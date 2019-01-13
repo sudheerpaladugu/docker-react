@@ -1,0 +1,9 @@
+sudo: required  #sudo perivilages required
+services: 
+  - docker
+
+before_install:
+  - docker build -t sdrpaladu/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run sdrpaladu/docker-react npm run test -- --coverage # -- --coverage is to quite the test after completion instead of waiting for user input
