@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run sdrpaladu/docker-react npm run test -- --coverage # -- --coverage is to quite the test after completion instead of waiting for user input
+
+deploy:  #All Applications  docker-react  DockerReact-env  Environment ID: e-z35iew8waz, URL: DockerReact-env.pfdvamwppz.us-east-2.elasticbeanstalk.com 
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: docker-react           #copy from AWS Beanstalk applications > Application 
+  env: DockerReact-env
+  bucket_name: "elasticbeanstalk-us-east-2-803409326603"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
